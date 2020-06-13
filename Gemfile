@@ -23,6 +23,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'config'
 
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'valid_email2'
 
 # Use slim templates
 gem 'slim-rails'
