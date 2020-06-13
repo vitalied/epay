@@ -1,0 +1,56 @@
+version: '3.7'
+
+services:
+  epay:
+    build: .
+    image: epay
+    container_name: epay
+    restart: on-failure
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - .:/app:delegated
+      - bundle_volume:/usr/local/bundle
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+
+  epay_sidekiq:
+    build: .
+    image: epay
+    container_name: epay_sidekiq
+    restart: on-failure
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - .:/app:delegated
+      - bundle_volume:/usr/local/bundle
+    command: ["bundle", "exec", "sidekiq"]
+    env_file:
+      - .env
+
+  mysql:
+    image: mariadb
+    restart: always
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    env_file:
+      - .env
+
+  redis:
+    image: redis:5-alpine
+    restart: always
+    volumes:
+      - redis_data:/data
+    ports:
+      - 6379:6379
+
+volumes:
+  mysql_data:
+  redis_data:
+  bundle_volume:
