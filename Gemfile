@@ -36,6 +36,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'rubocop-rails'
   gem 'rspec-rails'
+  gem 'capybara'
 end
 
 group :development do
