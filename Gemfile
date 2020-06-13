@@ -26,6 +26,9 @@ gem 'active_model_serializers', '~> 0.10.0'
 
 # Use slim templates
 gem 'slim-rails'
+# Bootstrap CSS framework
+gem 'bootstrap'
+gem 'jquery-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
