@@ -24,6 +24,7 @@ gem 'config'
 
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'valid_email2'
+gem 'auto_strip_attributes'
 
 # Use slim templates
 gem 'slim-rails'
