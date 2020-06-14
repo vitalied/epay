@@ -4,6 +4,8 @@ RSpec.describe User, type: :model do
   let(:user) { create :user }
   let(:admin_user) { create :admin_user }
 
+  it { is_expected.to have_one :merchant }
+
   it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
   it_behaves_like :validate_email, :email
 

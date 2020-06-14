@@ -17,4 +17,6 @@
 #
 class User < ApplicationRecord
   devise :database_authenticatable, :token_authenticatable, :validatable
+
+  has_one :merchant, dependent: :destroy
 end
