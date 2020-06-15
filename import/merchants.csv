@@ -1,0 +1,4 @@
+name,description,email,status
+Merchant1,"Merchant1 description",merchant1@dev.local,active
+Merchant2,"Merchant2 description",merchant2@dev.local,inactive
+Merchant3,"Merchant3 description",merchant3@dev.local,active

@@ -37,6 +37,8 @@ config/environments/*.local.yml
 /coverage/*
 
 /import/*
+!/import/admins.csv
+!/import/merchants.csv
 
 # Ignore editor specific configs
 /.idea

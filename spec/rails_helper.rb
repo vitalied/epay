@@ -10,6 +10,7 @@ SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
 SimpleCov.start 'rails' do
   add_filter 'spec'
   add_filter 'app/mailers/application_mailer.rb'
+  add_filter 'app/services/importer'
 end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
