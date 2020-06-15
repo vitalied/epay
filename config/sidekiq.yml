@@ -12,3 +12,10 @@
   - default
   - scheduled
   - low
+
+:schedule:
+  delete_old_transactions:
+    class: DeleteOldTransactionsJob
+    description: Delete transactions older than an hour
+    queue: scheduled
+    every: '1m' # Runs when every minute
