@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_13_222906) do
+ActiveRecord::Schema.define(version: 2020_06_14_174437) do
 
   create_table "merchants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -27,6 +27,24 @@ ActiveRecord::Schema.define(version: 2020_06_13_222906) do
     t.index ["user_id"], name: "index_merchants_on_user_id"
   end
 
+  create_table "transactions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "type", limit: 20, null: false
+    t.bigint "merchant_id", null: false
+    t.string "reference_uuid", limit: 50
+    t.string "uuid", limit: 50, null: false
+    t.decimal "amount", precision: 12, scale: 2
+    t.string "status", limit: 20, null: false
+    t.string "customer_email", null: false
+    t.string "customer_phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["merchant_id"], name: "index_transactions_on_merchant_id"
+    t.index ["reference_uuid"], name: "index_transactions_on_reference_uuid"
+    t.index ["status"], name: "index_transactions_on_status"
+    t.index ["type"], name: "index_transactions_on_type"
+    t.index ["uuid"], name: "index_transactions_on_uuid", unique: true
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -39,4 +57,6 @@ ActiveRecord::Schema.define(version: 2020_06_13_222906) do
   end
 
   add_foreign_key "merchants", "users"
+  add_foreign_key "transactions", "merchants"
+  add_foreign_key "transactions", "transactions", column: "reference_uuid", primary_key: "uuid", name: "index_transactions_on_reference_uuid"
 end

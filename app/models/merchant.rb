@@ -27,6 +27,7 @@ class Merchant < ApplicationRecord
   include DowncaseEmailAttributes
 
   belongs_to :user
+  has_many :transactions
 
   auto_strip_attributes :name, :description, :email, :status
 
@@ -42,6 +43,6 @@ class Merchant < ApplicationRecord
   validates :total_transaction_sum, numericality: { greater_than_or_equal_to: 0.0 }
 
   def can_be_deleted?
-    true
+    transactions.none?
   end
 end
