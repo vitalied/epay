@@ -3,6 +3,7 @@ module ExceptionHandling
 
   included do
     rescue_from ActionController::InvalidAuthenticityToken, with: :render_unauthorized
+    rescue_from Pundit::NotAuthorizedError, with: :render_forbidden
 
     def routing_error
       render_errors('Invalid URL or method.', :bad_request)
@@ -12,6 +13,10 @@ module ExceptionHandling
 
     def render_unauthorized
       render_errors(:Unauthorized, :unauthorized)
+    end
+
+    def render_forbidden
+      render_errors(:Forbidden, :forbidden)
     end
 
     def render_errors(error, status = :unprocessable_entity)
