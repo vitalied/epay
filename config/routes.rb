@@ -20,6 +20,14 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
   end
 
+  authenticated :user, lambda { |u| u.admin? } do
+    root to: 'admin/dashboard#index', as: :admin_root
+
+    namespace :admin do
+      get '/dashboard', to: 'dashboard#index', as: :dashboard
+    end
+  end
+
   authenticated :user do
     root to: 'dashboard#index', as: :merchant_root
 

@@ -23,7 +23,7 @@ module ExceptionHandling
       respond_to do |format|
         format.html do
           path = if current_user.present?
-                   merchant_root_path
+                   current_user.admin? ? admin_root_path : merchant_root_path
                  else
                    root_path
                  end
