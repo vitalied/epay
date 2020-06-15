@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(Settings.sidekiq_password))
   end unless Rails.env.development?
   mount Sidekiq::Web, at: '/sidekiq'
+
+  devise_for :users
 end

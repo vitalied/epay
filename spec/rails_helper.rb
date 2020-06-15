@@ -48,6 +48,8 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   config.include Warden::Test::Helpers
+  # add Devise methods
+  config.include Devise::Test::IntegrationHelpers, type: :request
   # add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods
 
