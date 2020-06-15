@@ -16,6 +16,12 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  authenticated :user do
+    namespace :api, defaults: { format: 'json' } do
+      resources :transactions, only: :create
+    end
+  end
+
   # this needs to go last!
   match '/:anything', to: 'application_public#routing_error', constraints: { anything: /.*/ }, via: :all
 end
