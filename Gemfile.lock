@@ -63,6 +63,9 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    annotate (3.1.1)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 14.0)
     ansi (1.5.0)
     ast (2.4.1)
     autoprefixer-rails (9.7.6)
@@ -315,6 +318,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
+  annotate
   bootsnap (>= 1.4.2)
   bootstrap
   byebug
