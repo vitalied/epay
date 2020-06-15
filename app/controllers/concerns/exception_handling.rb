@@ -4,6 +4,10 @@ module ExceptionHandling
   included do
     rescue_from ActionController::InvalidAuthenticityToken, with: :render_unauthorized
 
+    def routing_error
+      render_errors('Invalid URL or method.', :bad_request)
+    end
+
     private
 
     def render_unauthorized

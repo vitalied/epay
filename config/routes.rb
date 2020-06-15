@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
 
   devise_for :users
+
+  # this needs to go last!
+  match '/:anything', to: 'application_public#routing_error', constraints: { anything: /.*/ }, via: :all
 end
