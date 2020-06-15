@@ -1,0 +1,41 @@
+.table-responsive
+  table.table.table-striped.table-hover.table-sm
+    thead
+      tr
+        th
+          | Type
+        th
+          | Merchant
+        th
+          | Reference Transaction
+        th
+          | UUID
+        th
+          | Amount
+        th
+          | Status
+        th
+          | Customer Email
+        th
+          | Customer Phone
+    tbody
+      - @transactions.each do |transaction|
+        tr
+          td
+            span.badge class="badge-#{transaction_type_class(transaction)}"
+              = transaction.type
+          td
+            = transaction.merchant.name
+          td.transaction-uuid data-uuid="#{transaction.reference_transaction&.uuid}"
+            = transaction.reference_transaction&.uuid || '-'
+          td.transaction-uuid data-uuid="#{transaction.uuid}"
+            = transaction.uuid
+          td
+            = number_to_currency(transaction.amount) || '-'
+          td
+            span.badge class="badge-#{transaction_status_class(transaction)}"
+              = transaction.status
+          td
+            = transaction.customer_email
+          td
+            = transaction.customer_phone

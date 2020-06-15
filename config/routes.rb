@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     root to: 'dashboard#index', as: :merchant_root
 
     get '/dashboard', to: 'dashboard#index', as: :merchant_dashboard
+    resources :transactions, only: :index, as: :merchant_transactions
 
     namespace :api, defaults: { format: 'json' } do
       resources :transactions, only: :create

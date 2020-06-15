@@ -22,7 +22,11 @@ module ExceptionHandling
     def render_errors(error, status = :unprocessable_entity)
       respond_to do |format|
         format.html do
-          path = current_user.present? ? merchant_root_path : root_path
+          path = if current_user.present?
+                   merchant_root_path
+                 else
+                   root_path
+                 end
 
           redirect_to path, alert: error
         end
