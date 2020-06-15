@@ -1,0 +1,21 @@
+== render 'shared/navbar'
+.container-fluid
+  .row
+    == render partial: 'merchant/sidebar', locals: { active_link: :dashboard }
+    main.col-md-9.ml-sm-auto.col-lg-10.px-md-4 role="main"
+      .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+        h1.h2
+          | Dashboard
+      == render 'shared/flash_messages'
+      h2
+        | Statistics
+      .table-responsive
+        table.table.table-striped.table-hover.table-sm
+          thead
+            tr
+              th
+                | Transactions
+          tbody
+            tr
+              td
+                = @transactions_count

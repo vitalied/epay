@@ -1,0 +1,7 @@
+nav#sidebarMenu.col-md-3.col-lg-2.d-md-block.bg-light.sidebar.collapse
+  .sidebar-sticky.pt-3
+    ul.nav.flex-column
+      li.nav-item
+        = link_to 'Dashboard', merchant_dashboard_path, class: "nav-link #{:active if active_link == :dashboard}"
+      li.nav-item
+        = link_to 'Transactions', merchant_dashboard_path, class: "nav-link #{:active if active_link == :transactions}"

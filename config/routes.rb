@@ -16,7 +16,15 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  unauthenticated do
+    root to: 'dashboard#index'
+  end
+
   authenticated :user do
+    root to: 'dashboard#index', as: :merchant_root
+
+    get '/dashboard', to: 'dashboard#index', as: :merchant_dashboard
+
     namespace :api, defaults: { format: 'json' } do
       resources :transactions, only: :create
     end

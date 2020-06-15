@@ -22,7 +22,9 @@ module ExceptionHandling
     def render_errors(error, status = :unprocessable_entity)
       respond_to do |format|
         format.html do
-          redirect_to root_path, alert: error
+          path = current_user.present? ? merchant_root_path : root_path
+
+          redirect_to path, alert: error
         end
         format.json do
           render json: { error: error }, status: status
