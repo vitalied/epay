@@ -1,3 +1,5 @@
+![build](https://github.com/vitalied/epay/workflows/build/badge.svg)
+
 # ePay
 
 ## Setup

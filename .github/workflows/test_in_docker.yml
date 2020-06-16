@@ -1,0 +1,26 @@
+name: build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Pull Docker images
+      run: docker-compose pull
+    - name: Run mysql
+      run: docker-compose up -d mysql
+    - name: Build the Docker image
+      run: docker-compose build
+    - name: Prepare DB
+      run: docker-compose run epay bundle exec rails db:create db:schema:load RAILS_ENV=test
+    - name: Run tests
+      run: docker-compose run epay bundle exec rspec
