@@ -1,0 +1,5 @@
+- flash.each do |key, value|
+  .alert.alert-dismissible.fade.show class="alert-#{flash_alert_class(key)}"
+    button.close data-dismiss="alert"
+      span &times;
+    = value
